@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46bec402-0e7b-4a63-a166-112befeb8137" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/BaseTest.class" afterPath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/BaseTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/SyfyWireCommentsTest.class" afterPath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/SyfyWireCommentsTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/SyfyWireSearchTest.class" afterPath="$PROJECT_DIR$/target/test-classes/com/epam/syfy/tests/SyfyWireSearchTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/BaseTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/BaseTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireCommentsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireCommentsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java" />
-    </list>
+    <list default="true" id="46bec402-0e7b-4a63-a166-112befeb8137" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,6 +22,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
               <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testngconfig.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/testngconfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -71,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SyfyWireSearchTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SyfyWireSearchTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="476">
@@ -127,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/test/java/pageObject/ArticlePage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireCommentsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/testngconfig.xml" />
       </list>
     </option>
   </component>
@@ -624,7 +627,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -975,6 +978,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="65" lean-forward="true" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireCommentsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
@@ -985,13 +998,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/epam/syfy/tests/SyfyWireSearchTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/testngconfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="65" lean-forward="true" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
