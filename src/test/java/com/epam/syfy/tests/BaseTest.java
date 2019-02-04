@@ -6,13 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
-    Cookie ck = new Cookie("hide_popup192983", "1"); //Cookie to prevent pop-up window display
-    protected static String BASE_URL = "https://www.syfy.com";
     protected int timeOut = 10;
 
     @BeforeClass (description = "Open Chrome browser")

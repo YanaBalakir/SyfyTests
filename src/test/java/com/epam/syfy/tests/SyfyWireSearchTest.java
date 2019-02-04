@@ -1,49 +1,32 @@
 package com.epam.syfy.tests;
-import com.epam.syfy.tests.BaseTest;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObject.HomePage;
 
 public class SyfyWireSearchTest extends BaseTest {
-    private String searchRequest = "Avengers";
 
-    @Test (priority = 1)
+    @Test (priority = 1, description = "Verify that Search overlay opens")
     public void verifySearchOverlayOpen() {
-        System.out.println("Open syfy.com");
-        driver.get(BASE_URL);
-        driver.manage().addCookie(ck);
-        //Open Search overlay
-        System.out.println("Open Search overlay");
-        WebElement searchButton = driver.findElement(By.className("navbar__search"));
-        searchButton.click();
-        //Verify search overlay opened
-        System.out.println("Check that overlay opened");
-        WebElement searchOverlay = driver.findElement(By.className("js-search-active"));
-        Assert.assertTrue(searchOverlay.isDisplayed());
+        System.out.println("Click Search button to open overlay");
+        WebElement searchOverlay =  new HomePage(driver).open().clickSearchButton(); //Click Search button
+        System.out.println("Check that overlay opened"); //Verify search overlay opened
+        Assert.assertTrue(searchOverlay.isDisplayed(), "Search overlay didn't open!");
     }
-    @Test (priority = 2)
+    @Test (priority = 2, description = "Verify that Search results appear")
     public void verifySearchResultsDisplay() {
-        //Type search request
         System.out.println("Type Search request text");
-        WebElement searchField = driver.findElement(By.id("edit-keyword"));
-        searchField.clear();
-        searchField.sendKeys(searchRequest);
-        //Verify search results list is displayed
-        System.out.println("Verify that Search results block appeared");
-        WebElement searchResults = driver.findElement(By.className("search-results"));
-        Assert.assertTrue(searchResults.isDisplayed());
+        WebElement searchResults = new HomePage(driver).typeSearchRequest(); //Type search request
+        System.out.println("Verify that Search results block appeared"); //Verify search results list is displayed
+        Assert.assertTrue(searchResults.isDisplayed(), "Search results are not displayed!");
     }
-    @Test (priority = 3)
+    @Test (priority = 3, description = "Verify that Search result corresponds to Search request")
     public void verifySearchResult() {
-        //Open first search result
         System.out.println("Click on first Search result");
-        WebElement articleLink = driver.findElement(By.xpath("//div[contains(@id, 'solrsearch-results')]//a[contains(@class, 'teaser__content-title')]"));
-        articleLink.click();
-        //Verify article contains search request in Body
+        String articleBody = new HomePage(driver).clickFirstSearchResult().getArticleBody(); //Open first search result, get it's Body
         System.out.println("Verify that article Body text contains Search request(if Search works properly)");
-        String articleBody = driver.findElement(By.className("blog-post__body-copy")).getText();
-        Assert.assertTrue(articleBody.contains(searchRequest));
+        Assert.assertTrue(articleBody.contains(Properties.searchRequest), "Article doesn't contain search request!"); //Verify article contains search request in Body
     }
 
 }
