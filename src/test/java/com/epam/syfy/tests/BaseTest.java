@@ -21,8 +21,8 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
 
     }
-    @AfterClass (description = "Close browser")
-    public void closeBrowser () {
-        driver.quit();
-    }
+    //@AfterClass (description = "Close browser")
+    //public void closeBrowser () {
+    //    driver.quit();
+    //}
 }
