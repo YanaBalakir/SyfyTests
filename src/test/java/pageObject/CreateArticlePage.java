@@ -60,7 +60,7 @@ public class CreateArticlePage extends BasePage {
         WebElement coverUploadPopup = driver.findElement(COVER_UPLOAD_FRAME);
         driver.switchTo().frame(coverUploadPopup);
         WebElement coverUploadField = driver.findElement(COVER_UPLOAD_FIELD);
-        coverUploadField.sendKeys(Properties.articleCovermage);
+        coverUploadField.sendKeys(Properties.articleCoverImage);
         driver.findElement(NEXT_BUTTON).click();
         driver.findElement(SUBMIT_BUTTON).click();
         driver.switchTo().defaultContent();

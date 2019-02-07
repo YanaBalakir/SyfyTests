@@ -9,6 +9,7 @@ public class HomePage extends BasePage {
     private static final String URL = "https://www.syfy.com";
     private static final By SEARCH_BUTTON = By.className("navbar__search");
     private static final By SEARCH_OVERLAY = By.className("js-search-active");
+    private static final By FIRST_ARTICLE = By.className("teaser--semi-big-hero");
 
     public HomePage(WebDriver driver)
     {
@@ -22,7 +23,7 @@ public class HomePage extends BasePage {
     }
     public ArticlePage openFirstArticle() {
         System.out.println("Find the latest article, open it");
-        WebElement firstArticle = driver.findElement(By.className("teaser--semi-big-hero"));
+        WebElement firstArticle = driver.findElement(FIRST_ARTICLE);
         firstArticle.click();
         return new ArticlePage(driver);
     }
