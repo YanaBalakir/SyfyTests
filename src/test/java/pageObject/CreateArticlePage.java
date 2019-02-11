@@ -1,14 +1,16 @@
 package pageObject;
 
 import com.epam.syfy.tests.Properties;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+
 public class CreateArticlePage extends BasePage {
+    private JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+    Actions action = new Actions(driver);
     private WebDriverWait wait = new WebDriverWait(driver, Properties.timeoutWait);;
     private static final String URL = "https://edit.syfy.com/node/add/syfywire-blog-post";
     private static final By ARTICLE_TITLE_FIELD = By.id("edit-title");
@@ -21,6 +23,10 @@ public class CreateArticlePage extends BasePage {
     private static final By COVER_UPLOAD_FIELD = By.className("form-file");
     private static final By COVER_THUMBNAIL = By.className("media-thumbnail");
     private static final By NEXT_BUTTON = By.id("edit-next");
+    private static final By METADATA_TAB = By.partialLinkText("Meta Data");
+    private static final By TAG_INPUT = By.id("autocomplete-deluxe-input");
+    private static final By TAG_AUTOCOMPLETE = By.className("ui-autocomplete");
+    private static final By TAG_SELECTED = By.className("autocomplete-deluxe-item");
     private static final By SUBMIT_BUTTON = By.id("edit-submit");
     public CreateArticlePage(WebDriver driver) {
         super(driver);
@@ -51,7 +57,7 @@ public class CreateArticlePage extends BasePage {
         contributor.clear();
         contributor.sendKeys(Properties.contributorName);
         wait.until(ExpectedConditions.visibilityOfElementLocated(CONTRIBUTOR_AUTOCOMPLETE)).isDisplayed();
-        contributor.sendKeys(Keys.DOWN , Keys.RETURN);
+        contributor.sendKeys(Keys.DOWN, Keys.RETURN);
         return contributor.getAttribute("value");
     }
     public boolean setCoverImage() {
@@ -60,14 +66,39 @@ public class CreateArticlePage extends BasePage {
         WebElement coverUploadPopup = driver.findElement(COVER_UPLOAD_FRAME);
         driver.switchTo().frame(coverUploadPopup);
         WebElement coverUploadField = driver.findElement(COVER_UPLOAD_FIELD);
-        coverUploadField.sendKeys(Properties.articleCoverImage);
+        File file = new File(Properties.articleCoverImage);
+        coverUploadField.sendKeys(file.getAbsolutePath());
         driver.findElement(NEXT_BUTTON).click();
         driver.findElement(SUBMIT_BUTTON).click();
         driver.switchTo().defaultContent();
         return wait.until(ExpectedConditions.visibilityOfElementLocated(COVER_THUMBNAIL)).isDisplayed();
     }
+    public boolean setArticleTag() {
+        WebElement metaDataTab = driver.findElement(METADATA_TAB);
+        metaDataTab.click();
+        WebElement tagInput = driver.findElement(TAG_INPUT);
+        tagInput.sendKeys(Properties.articleTag);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TAG_AUTOCOMPLETE)).isDisplayed();
+        tagInput.sendKeys(Keys.DOWN, Keys.RETURN);
+        WebElement tagSelected = driver.findElement(TAG_SELECTED);
+        return tagSelected.isDisplayed();
+    }
+    public boolean reorderArticleTags() {
+        this.setArticleTag(); //Set another one tag
+        WebElement tagSelected = driver.findElement(TAG_SELECTED);
+        String tagTitle1 = tagSelected.getText(); //Get title of the 1st tag
+        action.dragAndDrop(tagSelected, driver.findElement(TAG_INPUT)).build().perform(); //Drag first tag beyond the second
+        String tag2Title = driver.findElement(TAG_SELECTED).getText(); //Get title of the 1st tag after DragAndDrop
+        if(tagTitle1.equals(tag2Title)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public ArticlePage submitArticleForm() {
-        driver.findElement(SUBMIT_BUTTON).click();
+        //driver.findElement(SUBMIT_BUTTON).click();
+        jsExec.executeScript("document.getElementById('edit-submit').click()");
         return new ArticlePage(driver);
     }
 }

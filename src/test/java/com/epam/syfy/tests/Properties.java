@@ -12,7 +12,8 @@ public class Properties {
     public static String title = "Test Article Title";
     public static String bodyText = "Test Body text for article";
     public static String contributorName = "Editor";
-    public static String articleCoverImage = "C:\\Users\\Alexandr\\IdeaProjects\\SyfyTests\\src\\test\\resources\\ArticleCover.jpg";
+    public static String articleCoverImage = "./src/test/resources/ArticleCover.jpg";
+    public static String articleTag = "Batman";
     public static int timeoutWait = 10;
     public static Cookie hidePopup = new Cookie("hide_popup192983", "1"); //Cookie to prevent pop-up window display
 

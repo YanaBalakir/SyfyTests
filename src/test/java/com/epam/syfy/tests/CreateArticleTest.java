@@ -33,9 +33,20 @@ public class CreateArticleTest extends BaseTest {
     @Test (priority = 5, description = "Verify Editor can set article Cover Image")
     public void verifyArticleCover() {
         boolean coverUploaded = addArticle.setCoverImage();
-        Assert.assertTrue(coverUploaded);
+        Assert.assertTrue(coverUploaded, "Article cover image didn't appear!");
     }
-    @Test (priority = 6, description = "Verify article created")
+    @Test (priority = 6, description = "Verify Editor can set article Tag")
+    public void verifyArticleTagAutocomplete() {
+        boolean tagSelected = addArticle.setArticleTag();
+        Assert.assertTrue(tagSelected, "Article tag was not set!");
+    }
+    @Test (priority = 7, description = "Verify Editor can reorder article tags")
+    public void verifyArticleTagsReorder() {
+        boolean tagsReordered = addArticle.reorderArticleTags();
+        Assert.assertTrue(tagsReordered);
+    }
+
+    @Test (priority = 8, description = "Verify article created")
     public void verifyArticleCreated() {
         ArticlePage createdArticle = addArticle.submitArticleForm();
         String actualTitle = createdArticle.getArticleTitle();
