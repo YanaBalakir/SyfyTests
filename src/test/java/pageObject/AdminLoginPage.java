@@ -1,5 +1,6 @@
 package pageObject;
 
+import businessObject.UserEditor;
 import com.epam.syfy.tests.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,15 +23,15 @@ public class AdminLoginPage extends BasePage {
         driver.manage().addCookie(Properties.hidePopup);
         return this;
     }
-    public boolean loginEditor() {
+    public boolean loginEditor(UserEditor editor) {
         //Type Editor login data and submit
         System.out.println("Login as Editor");
         WebElement emailInput = driver.findElement(LOGIN_EMAIL);
         emailInput.clear();
-        emailInput.sendKeys(Properties.editorEmailValue);
+        emailInput.sendKeys(editor.getUserEmail());
         WebElement passwordInput = driver.findElement(LOGIN_PASSWORD);
         passwordInput.clear();
-        passwordInput.sendKeys(Properties.editorPasswordValue);
+        passwordInput.sendKeys(editor.getUserPassword());
         WebElement loginButton = driver.findElement(LOGIN_BUTTON);
         loginButton.click();
         return driver.findElement(ADMIN_USERNAME).isDisplayed();

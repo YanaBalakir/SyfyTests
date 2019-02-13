@@ -1,5 +1,6 @@
 package com.epam.syfy.tests;
 
+import businessObject.UserEditor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.AdminLoginPage;
@@ -11,7 +12,8 @@ public class CreateArticleTest extends BaseTest {
 
     @Test (priority = 1, description = "Verify that Editor is able to login")
     public void verifyEditorLogin() {
-        boolean editorUserName = new AdminLoginPage(driver).open().loginEditor(); //Login as Editor
+        UserEditor editor = new UserEditor(Properties.editorEmailValue, Properties.editorPasswordValue);
+        boolean editorUserName = new AdminLoginPage(driver).open().loginEditor(editor); //Login as Editor
         Assert.assertTrue(editorUserName, "Username is not displayed! Editor didn't login!");
     }
     @Test (priority = 2, description = "Verify Editor can fill in article Title")

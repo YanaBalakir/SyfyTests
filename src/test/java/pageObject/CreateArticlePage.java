@@ -2,16 +2,14 @@ package pageObject;
 
 import com.epam.syfy.tests.Properties;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import utils.ActionsUtil;
+import utils.WaitUtil;
 import java.io.File;
 
 public class CreateArticlePage extends BasePage {
     private JavascriptExecutor jsExec = (JavascriptExecutor) driver;
-    Actions action = new Actions(driver);
-    private WebDriverWait wait = new WebDriverWait(driver, Properties.timeoutWait);;
     private static final String URL = "https://edit.syfy.com/node/add/syfywire-blog-post";
     private static final By ARTICLE_TITLE_FIELD = By.id("edit-title");
     private static final By WYSIWYG_FRAME = By.className("cke_wysiwyg_frame");
@@ -56,7 +54,7 @@ public class CreateArticlePage extends BasePage {
         WebElement contributor = driver.findElement(CONTRIBUTOR_FIELD);
         contributor.clear();
         contributor.sendKeys(Properties.contributorName);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(CONTRIBUTOR_AUTOCOMPLETE)).isDisplayed();
+        WaitUtil.waitElement(driver, CONTRIBUTOR_AUTOCOMPLETE);
         contributor.sendKeys(Keys.DOWN, Keys.RETURN);
         return contributor.getAttribute("value");
     }
@@ -71,29 +69,21 @@ public class CreateArticlePage extends BasePage {
         driver.findElement(NEXT_BUTTON).click();
         driver.findElement(SUBMIT_BUTTON).click();
         driver.switchTo().defaultContent();
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(COVER_THUMBNAIL)).isDisplayed();
+        return WaitUtil.waitElement(driver, COVER_THUMBNAIL);
     }
     public boolean setArticleTag() {
         WebElement metaDataTab = driver.findElement(METADATA_TAB);
         metaDataTab.click();
         WebElement tagInput = driver.findElement(TAG_INPUT);
         tagInput.sendKeys(Properties.articleTag);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(TAG_AUTOCOMPLETE)).isDisplayed();
+        WaitUtil.waitElement(driver, TAG_AUTOCOMPLETE);
         tagInput.sendKeys(Keys.DOWN, Keys.RETURN);
         WebElement tagSelected = driver.findElement(TAG_SELECTED);
         return tagSelected.isDisplayed();
     }
     public boolean reorderArticleTags() {
         this.setArticleTag(); //Set another one tag
-        WebElement tagSelected = driver.findElement(TAG_SELECTED);
-        String tagTitle1 = tagSelected.getText(); //Get title of the 1st tag
-        action.dragAndDrop(tagSelected, driver.findElement(TAG_INPUT)).build().perform(); //Drag first tag beyond the second
-        String tag2Title = driver.findElement(TAG_SELECTED).getText(); //Get title of the 1st tag after DragAndDrop
-        if(tagTitle1.equals(tag2Title)) {
-            return false;
-        } else {
-            return true;
-        }
+        return ActionsUtil.reorderTags(driver, TAG_SELECTED, TAG_INPUT);
     }
 
     public ArticlePage submitArticleForm() {

@@ -1,11 +1,13 @@
 package pageObject;
 
+import businessObject.UserFacebook;
 import com.epam.syfy.tests.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WaitUtil;
 
 public class FacebookLoginPopup extends BasePage {
     private WebDriverWait wait;
@@ -17,7 +19,7 @@ public class FacebookLoginPopup extends BasePage {
     public FacebookLoginPopup(WebDriver driver) {
         super(driver);
     }
-    public boolean loginToComments() {
+    public boolean loginToComments(UserFacebook fbUser) {
         String winHandleBefore = driver.getWindowHandle(); // Store the current window handle
         for(String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
@@ -26,15 +28,14 @@ public class FacebookLoginPopup extends BasePage {
         System.out.println("Fill in Facebook login data, submit form");
         WebElement facebookEmail = driver.findElement(FACEBOOK_EMAIL);
         facebookEmail.clear();
-        facebookEmail.sendKeys(Properties.facebookEmailValue);
+        facebookEmail.sendKeys(fbUser.getUserEmail());
         WebElement facebookPassword = driver.findElement(FACEBOOK_PASSWORD);
         facebookPassword.clear();
-        facebookPassword.sendKeys(Properties.facebookPassValue);
+        facebookPassword.sendKeys(fbUser.getUserPassword());
         WebElement facebookSubmit = driver.findElement(FACEBOOK_SUBMIT);
         facebookSubmit.click(); //Login window should close itself
         // Switch back to original browser (first window)
         driver.switchTo().window(winHandleBefore);
-        wait = new WebDriverWait(driver, Properties.timeoutWait);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_LINK)).isDisplayed();
+        return WaitUtil.waitElement(driver, LOGOUT_LINK);
     }
 }

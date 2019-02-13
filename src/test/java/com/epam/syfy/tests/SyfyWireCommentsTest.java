@@ -1,5 +1,6 @@
 package com.epam.syfy.tests;
 
+import businessObject.UserFacebook;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +26,8 @@ public class SyfyWireCommentsTest extends BaseTest {
 
     @Test (priority = 3, description = "Verify that user is able to login to Comments")
     public void verifySocialSignIn() {
-        boolean commentsSignOut = new FacebookLoginPopup(driver).loginToComments(); //Login to comments with Facebook
+        UserFacebook fbUser = new UserFacebook(Properties.facebookEmailValue, Properties.facebookPassValue);
+        boolean commentsSignOut = new FacebookLoginPopup(driver).loginToComments(fbUser); //Login to comments with Facebook
         Assert.assertTrue(commentsSignOut, "User was not able to login!"); //Verify user logged in
     }
     @Test (priority = 4, description = "Verify that user is able to post Comment")
