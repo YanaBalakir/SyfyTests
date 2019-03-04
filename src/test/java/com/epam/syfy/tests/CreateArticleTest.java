@@ -12,8 +12,7 @@ public class CreateArticleTest extends BaseTest {
 
     @Test (priority = 1, description = "Verify that Editor is able to login")
     public void verifyEditorLogin() {
-        UserEditor editor = new UserEditor(Properties.editorEmailValue, Properties.editorPasswordValue);
-        boolean editorUserName = new AdminLoginPage(driver).open().loginEditor(editor); //Login as Editor
+        boolean editorUserName = new AdminLoginPage(driver).open().loginEditor(UserEditor.getInstance()); //Login as Editor
         Assert.assertTrue(editorUserName, "Username is not displayed! Editor didn't login!");
     }
     @Test (priority = 2, description = "Verify Editor can fill in article Title")

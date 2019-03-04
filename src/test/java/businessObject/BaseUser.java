@@ -1,6 +1,6 @@
 package businessObject;
 
-public class BaseUser {
+public abstract class BaseUser {
     private String userEmail;
     private String userPassword;
 

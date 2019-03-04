@@ -1,16 +1,12 @@
 package pageObject;
 
 import businessObject.UserFacebook;
-import com.epam.syfy.tests.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.WaitUtil;
 
 public class FacebookLoginPopup extends BasePage {
-    private WebDriverWait wait;
     private static final By FACEBOOK_EMAIL = By.id("email");
     private static final By FACEBOOK_PASSWORD = By.id("pass");
     private static final By FACEBOOK_SUBMIT = By.name("login");
