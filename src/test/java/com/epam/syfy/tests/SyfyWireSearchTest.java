@@ -17,7 +17,7 @@ public class SyfyWireSearchTest extends BaseTest {
     }
     @Test (priority = 2, description = "Verify that Search results appear")
     public void verifySearchResultsDisplay() {
-        boolean searchResults = searchOverlay.typeSearchRequest(); //Type search request
+        boolean searchResults = searchOverlay.typeSearchRequest("123"); //Type search request
         Assert.assertTrue(searchResults, "Search results are not displayed!"); //Verify search results list is displayed
     }
     @Test (priority = 3, description = "Verify that Search result corresponds to Search request")

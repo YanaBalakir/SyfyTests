@@ -14,10 +14,10 @@ public class SearchOverlay extends BasePage {
     {
         super(driver);
     }
-    public boolean typeSearchRequest() {
+    public boolean typeSearchRequest(String query) {
         System.out.println("Type Search request");
         driver.findElement(SEARCH_INPUT).clear();
-        driver.findElement(SEARCH_INPUT).sendKeys(Properties.searchRequest);
+        driver.findElement(SEARCH_INPUT).sendKeys(query);
         return driver.findElement(SEARCH_RESULTS).isDisplayed();
     }
     public ArticlePage clickFirstSearchResult() {
